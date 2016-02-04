@@ -64,15 +64,17 @@ return [
             'strict'    => false,
         ],
 
+
         'pgsql' => [
             'driver'   => 'pgsql',
-            'host'     => env('DB_HOST', 'ec2-107-21-218-93.compute-1.amazonaws.com'),
-            'database' => env('DB_DATABASE', 'd27du8mjemovd9'),
-            'username' => env('DB_USERNAME', 'djzdmrghikflyp'),
-            'password' => env('DB_PASSWORD', 'yIyg9ql2CtJ--SlqUgdDFIP-m4'),
+            'host'     => @parse_url(getenv("DATABASE_URL"))["ec2-107-21-218-93.compute-1.amazonaws.com"],
+            'database' => @substr(parse_url(getenv("DATABASE_URL"))["d27du8mjemovd9"], 1),
+            'username' => @parse_url(getenv("DATABASE_URL"))["djzdmrghikflyp"],
+            'password' => @parse_url(getenv("DATABASE_URL"))["yIyg9ql2CtJ--SlqUgdDFIP-m4"],
             'charset'  => 'utf8',
             'prefix'   => '',
             'schema'   => 'public',
+            
         ],
 
         'sqlsrv' => [
